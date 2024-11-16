@@ -27,7 +27,7 @@ int main() {
 
     if (window == NULL) {
         spdlog::error("Failed to create window");
-        return 1;
+        return 1; 
     }
 
     spdlog::info("Created window");
