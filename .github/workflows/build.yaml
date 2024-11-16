@@ -28,9 +28,17 @@ jobs:
         cd build
         ls
         xcodebuild -scheme BadPiggies -configuration Release -destination platform=iOS -archivePath ./BadPiggies.xcarchive CODE_SIGNING_ALLOWED=NO
-        xcodebuild -exportArchive -exportFormat ipa -archivePath ./BadPiggies.xcarchive -exportPath ./output/BadPiggies.ipa
+
+    - name: Create IPA
+      run: |
+        mkdir Payload
+        mv BadPiggies.xcarchive/Products/Applications/BadPiggies.app Payload/BadPiggies.app
+
+        zip -r "BadPiggies.ipa" "Payload"
+
+        mv BadPiggies.ipa ${{ runner.temp }}/BadPiggies.ipa
 
     - uses: actions/upload-artifact@v4
       with:
         name: BadPiggies-iOS
-        path: ./output/BadPiggies.ipa
+        path: ${{ runner.temp }}/BadPiggies.ipa
