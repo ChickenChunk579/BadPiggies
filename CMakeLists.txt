@@ -50,5 +50,5 @@ set ( FRAMEWORKS
 add_subdirectory(vendor/SDL)
 add_subdirectory(vendor/spdlog)
 
-add_executable(BadPiggies main.cpp)
-target_link_libraries(BadPiggies MACOSX_BUNDLE PRIVATE SDL2::SDL2 spdlog)
+add_executable(BadPiggies MACOSX_BUNDLE main.cpp)
+target_link_libraries(BadPiggies PRIVATE SDL2::SDL2 spdlog)
