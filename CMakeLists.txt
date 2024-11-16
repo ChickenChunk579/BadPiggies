@@ -46,6 +46,16 @@ set ( FRAMEWORKS
 
 
 
+if(DARWIN)
+    set(CMAKE_SYSTEM_NAME iOS)
+    set(CMAKE_OSX_ARCHITECTURES arm64 armv7s)
+    set(CMAKE_XCODE_EFFECTIVE_PLATFORMS iphoneos iphonesimulator)
+    set(SDKVER 18.0.1)
+    set(DEVROOT "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer")
+    set(SDKROOT "${DEVROOT}/SDKs/iPhoneOS${SDKVER}.sdk")
+endif()
+  
+
 
 add_subdirectory(vendor/SDL)
 add_subdirectory(vendor/spdlog)
