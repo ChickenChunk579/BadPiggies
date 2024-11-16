@@ -31,6 +31,7 @@ jobs:
 
     - name: Create IPA
       run: |
+        find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"
         mkdir Payload
         mv BadPiggies.xcarchive/Products/Applications/BadPiggies.app Payload/BadPiggies.app
 
