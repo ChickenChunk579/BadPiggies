@@ -1,6 +1,9 @@
 #define SDL_MAIN_HANDLED
 #include "SDL.h"
 #include "spdlog/spdlog.h"
+#if defined(__APPLE__)
+#include <_locale.h>
+#endif
 
 const Uint32 fps = 60;
 const Uint32 minframetime = 1000 / fps;
@@ -57,8 +60,11 @@ int main() {
         if (currentTime - lastTime >= 1000) {
             int fps = frameCount * 1000 / (currentTime - lastTime);
             char title[256];
+            #if defined(__APPLE__)
+            #else
             sprintf_s(title, "Bad Piggies - FPS: %d", fps);
             SDL_SetWindowTitle(window, title);
+            #endif
             lastTime = currentTime;
             frameCount = 0;
         }
