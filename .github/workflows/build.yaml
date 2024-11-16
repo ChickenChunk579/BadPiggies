@@ -14,6 +14,10 @@ jobs:
     - name: Set up CMake
       uses: jwlawson/actions-setup-cmake@v2
 
+    - name: Clone submodules
+      run: |
+        git submodule update --init --recursive
+
     - name: Configure
       run: |
         mkdir build && cd build
